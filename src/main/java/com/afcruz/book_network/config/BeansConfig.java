@@ -1,4 +1,4 @@
-package com.afcruz.book_network.Config;
+package com.afcruz.book_network.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

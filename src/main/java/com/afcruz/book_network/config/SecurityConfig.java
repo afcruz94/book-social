@@ -1,4 +1,4 @@
-package com.afcruz.book_network.Config;
+package com.afcruz.book_network.config;
 
 import com.afcruz.book_network.security.JwtFilter;
 import lombok.RequiredArgsConstructor;
