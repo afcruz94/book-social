@@ -16,14 +16,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
     @Value("${spring.mailing.frontend.activation-url}")
-    private final String activationUrl;
+    private String activationUrl;
 
     private static final Logger log = LoggerFactory.getLogger(AuthenticationService.class);
     private final PasswordEncoder passwordEncoder;
@@ -44,7 +46,7 @@ public class AuthenticationService {
                     .lastname(registrationRequest.getLastname())
                     .email(registrationRequest.getEmail())
                     .password(passwordEncoder.encode(registrationRequest.getPassword()))
-                    .birthDate(registrationRequest.getBirthDate())
+                    .birthDate(LocalDate.parse(registrationRequest.getBirthDate().toString(), DateTimeFormatter.ISO_DATE))
                     .isAccountLocked(false)
                     .isEnabled(false)
                     .roles(List.of(userRole))

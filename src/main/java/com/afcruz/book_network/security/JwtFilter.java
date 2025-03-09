@@ -22,7 +22,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
     @Value("${server.servlet.context-path}")
-    private final String contextPath;
+    private String contextPath;
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
 
