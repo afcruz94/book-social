@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class User implements UserDetails, Principal {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String firstname;
@@ -44,7 +44,7 @@ public class User implements UserDetails, Principal {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
     @LastModifiedDate
-    @Column(insertable = false)
+    @Column(nullable = false)
     private LocalDateTime modifiedAt;
 
     @ManyToMany(fetch = FetchType.EAGER)

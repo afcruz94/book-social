@@ -21,7 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(unique = true)
@@ -31,7 +31,7 @@ public class Role {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
     @LastModifiedDate
-    @Column(insertable = false)
+    @Column(nullable = false)
     private LocalDateTime modifiedAt;
 
     @ManyToMany(mappedBy = "roles")
