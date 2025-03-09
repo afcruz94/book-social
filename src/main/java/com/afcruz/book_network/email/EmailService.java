@@ -43,13 +43,13 @@ public class EmailService {
         Context context = new Context();
         context.setVariables(properties);
 
-        mimeMessageHelper.setFrom("andre_dev94@outlook.com");
-        mimeMessageHelper.setText(to);
+        mimeMessageHelper.setFrom("contact@outlook.com");
+        mimeMessageHelper.setTo(to);
         mimeMessageHelper.setSubject(subject);
 
         final String template = templateEngine.process(templateName, context);
 
-        mimeMessageHelper.setText(template);
+        mimeMessageHelper.setText(template, true);
 
         mailSender.send(mimeMessage);
     }
