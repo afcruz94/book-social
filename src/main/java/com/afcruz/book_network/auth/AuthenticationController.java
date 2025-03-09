@@ -1,6 +1,7 @@
 package com.afcruz.book_network.auth;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,5 +21,17 @@ public class AuthenticationController {
         authenticationService.registerUser(registrationRequest);
 
         return ResponseEntity.accepted().build();
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> loginUser(@Valid @RequestBody LoginRequest loginRequest) {
+        var loginUser = authenticationService.loginUser(loginRequest);
+
+        return ResponseEntity.ok(loginUser);
+    }
+
+    @GetMapping("/activate-account")
+    public void confirm(@RequestParam String token) throws MessagingException {
+        authenticationService.activateAccount(token);
     }
 }
