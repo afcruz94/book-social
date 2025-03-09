@@ -1,13 +1,17 @@
 package com.afcruz.book_network.book;
 
 import com.afcruz.book_network.common.AbstractEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import com.afcruz.book_network.feedback.Feedback;
+import com.afcruz.book_network.history.BookTransactionHistory;
+import com.afcruz.book_network.user.User;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+
+import java.util.List;
 
 @Entity
 @Table(name = "_books")
@@ -24,4 +28,14 @@ public class Book extends AbstractEntity {
     private String bookCover;
     private boolean isArchived;
     private boolean isShareable;
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private User owner;
+
+    @OneToMany(mappedBy = "book")
+    private List<Feedback> feedbacks;
+
+    @OneToMany(mappedBy = "book")
+    private List<BookTransactionHistory> transactionHistories;
 }
